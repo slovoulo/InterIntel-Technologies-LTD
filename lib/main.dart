@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'Screens/info_screen.dart';
 import 'Screens/splash_screen.dart';
 import 'constants.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  Get.put<MyDrawerController>(MyDrawerController());
 }
 
 class MyApp extends StatelessWidget {

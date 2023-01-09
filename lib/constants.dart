@@ -26,3 +26,19 @@ const kGradientLightBlue = Color(0xFF98C4F3);
 const kSuccessGreen = Color(0xFF4CAF50);
 const kLogoutRed = Color(0xFFFF7171);
 const kPendingOrange = Color(0xFFFF9800);
+
+//showcaseview keys
+final GlobalKey zero = GlobalKey();
+final GlobalKey one = GlobalKey();
+final GlobalKey two = GlobalKey();
+final GlobalKey three = GlobalKey();
+final GlobalKey four = GlobalKey();
+final GlobalKey five = GlobalKey();
+final List<GlobalKey> showcaseKeys = [zero, one, two, three, four, five];
+
+TextStyle kWhiteTextStyle(
+    double fontSize,
+    ) {
+  return TextStyle(
+      color: kWhiteColor, fontSize: fontSize, fontWeight: FontWeight.w600);
+}
