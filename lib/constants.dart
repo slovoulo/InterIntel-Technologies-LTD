@@ -3,8 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 Color kPrimaryColor = Color(0xFF17344d);
-Color kPrimaryColorLight = Color(0xFF3B6CE9).withOpacity(0.25);
-Color kPrimaryColorLighter = Color(0xFF3B6CE9).withOpacity(0.05);
+Color kPrimaryColorLight = Color(0xFF17344d).withOpacity(0.25);
+Color kPrimaryColorLighter = Color(0xFF17344d).withOpacity(0.5);
 
 Color kWebviewColor = Color(0xFF3B6CE9).withOpacity(0.4);
 
@@ -36,9 +36,34 @@ final GlobalKey four = GlobalKey();
 final GlobalKey five = GlobalKey();
 final List<GlobalKey> showcaseKeys = [zero, one, two, three, four, five];
 
+//REUSABLE TEXT STYLE BLUEPRINT
 TextStyle kWhiteTextStyle(
-    double fontSize,
-    ) {
+  double fontSize,
+) {
   return TextStyle(
       color: kWhiteColor, fontSize: fontSize, fontWeight: FontWeight.w600);
+}
+
+//REUSABLE BUTTON BLUEPRINT
+kTextButton(
+    {required String text,
+      required double width,
+      required Function() onPressed}) {
+  return GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        height: 40,
+        width: width,
+        decoration: BoxDecoration(
+            color: kPrimaryColor,
+            borderRadius: BorderRadius.circular(
+              50,
+            )),
+        child: Center(
+            child: Text(
+              text,
+              style: TextStyle(
+                  fontSize: 20, color: kWhiteColor, fontWeight: FontWeight.w700),
+            )),
+      ));
 }
