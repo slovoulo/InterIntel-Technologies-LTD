@@ -44,6 +44,13 @@ TextStyle kWhiteTextStyle(
       color: kWhiteColor, fontSize: fontSize, fontWeight: FontWeight.w600);
 }
 
+TextStyle kBoldBlackTextStyle(
+  double fontSize,
+) {
+  return TextStyle(
+      color: kTextColorBlack, fontSize: fontSize, fontWeight: FontWeight.bold);
+}
+
 //REUSABLE BUTTON BLUEPRINT
 kTextButton(
     {required String text,
