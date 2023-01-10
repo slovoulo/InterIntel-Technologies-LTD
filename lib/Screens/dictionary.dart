@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter/cupertino.dart';
+import 'package:interintel_interview_solution/constants.dart';
 
 class DictionaryScreen extends StatefulWidget {
   const DictionaryScreen({Key? key}) : super(key: key);
@@ -48,29 +49,53 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
     print(sortedByKeyMap);
   }
 
+  dictionaryContainer(String key, String value){
+    return Material(elevation: 20,borderRadius: BorderRadius.circular(30),
+      child: Container(
+        alignment: Alignment.center,
+        height: 180,
+        width:MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          color: kPrimaryColor,
+          border: Border.all(),
+          borderRadius: BorderRadius.circular(30)
+
+        ),
+        child: Column(children: [
+          Text(key,style: TextStyle(color: kWhiteColor,fontSize: 40),),
+          Divider(),
+          Text(value,style: TextStyle(color: kTextColorGrey,fontSize: 30),)
+        ],),
+
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar(centerTitle: true,backgroundColor: kPrimaryColorLighter,
         title: Text("Dictionary"),
 
       ),
-      body: ListView.builder(itemCount:sortedByKeyMap.length,
-          itemBuilder: (BuildContext context, int index){
-            String key = sortedByKeyMap.keys.elementAt(index);
-            return new Column(
-              children: <Widget>[
-                new ListTile(
-                  leading: new Text("$key"),
-                  title: new Text("${sortedByKeyMap[key]}"),
-                ),
-                new Divider(
-                  height: 2.0,
-                ),
-              ],
-            );
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child:    ListView.builder(itemCount:sortedByKeyMap.length,
+            itemBuilder: (BuildContext context, int index){
+              String key = sortedByKeyMap.keys.elementAt(index);
+              return new Column(
+                children: <Widget>[
+                  dictionaryContainer(key, sortedByKeyMap[key]),
 
-          }),
+               SizedBox(
+                    height: 15.0,
+                  ),
+                ],
+              );
+
+            }),
+      )
+
     );
   }
 }

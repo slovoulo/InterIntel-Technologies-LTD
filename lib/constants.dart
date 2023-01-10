@@ -49,6 +49,12 @@ TextStyle kBoldBlackTextStyle(
 ) {
   return TextStyle(
       color: kTextColorBlack, fontSize: fontSize, fontWeight: FontWeight.bold);
+
+}TextStyle kBoldGreyTextStyle(
+  double fontSize,
+) {
+  return TextStyle(
+      color: kTextColorGrey, fontSize: fontSize, fontWeight: FontWeight.bold);
 }
 
 //REUSABLE BUTTON BLUEPRINT
