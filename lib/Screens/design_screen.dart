@@ -12,11 +12,16 @@ import 'package:interintel_interview_solution/constants.dart';
 
 import 'package:permission_handler/permission_handler.dart';
 
-
 class DesignScreen extends StatefulWidget {
-  // final String username,email,phoneNumber;
-  // final bool isFromInfo;
-  // const DesignScreen({Key? key, required this.username,required this.email, required this.phoneNumber, required this.isFromInfo}) : super(key: key);
+  final String username, email, phoneNumber;
+  final bool isFromInfo;
+  const DesignScreen(
+      {Key? key,
+      required this.username,
+      required this.email,
+      required this.phoneNumber,
+      required this.isFromInfo})
+      : super(key: key);
 
   @override
   State<DesignScreen> createState() => _DesignScreenState();
@@ -64,12 +69,10 @@ class _DesignScreenState extends State<DesignScreen> {
     );
   }
 
-
-
   Future captureScreen() async {
     final uint8List = await screenshotController.capture();
     String tempPath = (await getTemporaryDirectory()).path;
-    String fileName ="myFile";
+    String fileName = "myFile";
     if (await Permission.storage.request().isGranted) {
       File file = await File('$tempPath/$fileName.png').create();
       file.writeAsBytesSync(uint8List!);
@@ -77,14 +80,15 @@ class _DesignScreenState extends State<DesignScreen> {
     }
   }
 
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: kPrimaryColorLighter,title: Text("Design"),centerTitle: true,),
-      body: Column(
+      appBar: AppBar(
+        backgroundColor: kPrimaryColorLighter,
+        title: Text("Design"),
+        centerTitle: true,
+      ),
+      body: widget.isFromInfo==true?Column(
         children: [
           Screenshot(
             controller: screenshotController,
@@ -92,21 +96,18 @@ class _DesignScreenState extends State<DesignScreen> {
               children: [
                 buildTop(),
                 Text(
-                  "Username",
+                  widget.username,
                   style: kBoldGreyTextStyle(40),
                 ),
                 Text(
-                  "username@email.com",
-                  style: TextStyle(color: kTextColorGrey,fontSize: 18),
+                  widget.email,
+                  style: TextStyle(color: kTextColorGrey, fontSize: 18),
                 ),
                 Text(
-                  "0708393939",
-                  style: TextStyle(color: kTextColorGrey,fontSize: 18),
+                  widget.phoneNumber,
+                  style: TextStyle(color: kTextColorGrey, fontSize: 18),
                 ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height*0.15
-                ),
-
+                SizedBox(height: MediaQuery.of(context).size.height * 0.15),
               ],
             ),
           ),
@@ -115,10 +116,9 @@ class _DesignScreenState extends State<DesignScreen> {
               width: MediaQuery.of(context).size.width * 0.3,
               onPressed: () {
                 captureScreen();
-
               })
         ],
-      ),
+      ):Text("Your design here")
     );
   }
 }

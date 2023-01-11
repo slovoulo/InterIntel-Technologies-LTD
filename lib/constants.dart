@@ -24,7 +24,7 @@ const kGradientLighterBlue = Color(0xFFD5E6F8);
 const kGradientLightBlue = Color(0xFF98C4F3);
 
 const kSuccessGreen = Color(0xFF4CAF50);
-const kLogoutRed = Color(0xFFFF7171);
+const kLogoutRed = Color(0xFF880808);
 const kPendingOrange = Color(0xFFFF9800);
 
 //showcaseview keys

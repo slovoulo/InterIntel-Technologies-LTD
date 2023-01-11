@@ -15,6 +15,9 @@ class InfoBody extends StatefulWidget {
 
 class _InfoBodyState extends State<InfoBody> {
   final _formKey = GlobalKey<FormState>();
+  TextEditingController emailController=TextEditingController();
+  TextEditingController phoneController=TextEditingController();
+  TextEditingController usernameController=TextEditingController();
   bool isEmail(String input) => EmailValidator.validate(input);
   @override
   Widget build(BuildContext context) {
@@ -61,6 +64,7 @@ class _InfoBodyState extends State<InfoBody> {
                           prefixIcon: Icon(Icons.person),
                           //contentPadding: EdgeInsets.all(20),
                         ) ,
+                        controller: usernameController,
 
                         // The validator receives the text that the user has entered.
                         validator: (value) {
@@ -72,6 +76,7 @@ class _InfoBodyState extends State<InfoBody> {
                       ),
                       SizedBox(height: 20,),
                       TextFormField(
+                        controller: emailController,
                         keyboardType: TextInputType.emailAddress,
                         decoration:InputDecoration(
                           hintStyle: TextStyle(fontSize: 17),
@@ -93,6 +98,7 @@ class _InfoBodyState extends State<InfoBody> {
                       ),
                       SizedBox(height: 20,),
                       TextFormField(
+                        controller: phoneController,
                         keyboardType: TextInputType.phone,
                         decoration:InputDecoration(
                           focusedBorder:OutlineInputBorder(
@@ -122,7 +128,7 @@ class _InfoBodyState extends State<InfoBody> {
                   // If the form is valid, navigate to design page
                   PersistentNavBarNavigator.pushNewScreen(
                     context,
-                    screen: DesignScreen(),
+                    screen: DesignScreen(username: usernameController.text,email: emailController.text,phoneNumber: phoneController.text, isFromInfo: true,),
                     withNavBar: false,
                     pageTransitionAnimation: PageTransitionAnimation.cupertino,
                   );

@@ -50,7 +50,7 @@ class _SplashScreenState extends State<SplashScreen> {
       PersistentNavBarNavigator.pushNewScreen(
         context,
         screen: InfoScreen(deviceInfo: deviceManufacturer,),
-        withNavBar: true, // OPTIONAL VALUE. True by default.
+        withNavBar: true,
         pageTransitionAnimation: PageTransitionAnimation.cupertino,
       );
     } else if (connectivityResult == ConnectivityResult.wifi) {
@@ -62,7 +62,7 @@ class _SplashScreenState extends State<SplashScreen> {
       PersistentNavBarNavigator.pushNewScreen(
         context,
         screen: InfoScreen(deviceInfo: deviceManufacturer,),
-        withNavBar: true, // OPTIONAL VALUE. True by default.
+        withNavBar: true,
         pageTransitionAnimation: PageTransitionAnimation.cupertino,
       );
     }else{

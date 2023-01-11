@@ -2,6 +2,7 @@
     package="com.interintel.com.interintel_interview_solution">
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="interintel_interview_solution"
         android:name="${applicationName}"
