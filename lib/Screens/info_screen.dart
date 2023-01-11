@@ -108,7 +108,7 @@ class MenuScreen extends GetView<MyDrawerController> {
               children: [
                 const SizedBox(height: 16.0),
                 Text(
-                  "Hello there Sony user.",
+                  "Hello there $deviceInfo user.",
                   style: const TextStyle(
                       fontSize: 15,
                       color: kWhiteColor,
