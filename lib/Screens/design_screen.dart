@@ -83,42 +83,55 @@ class _DesignScreenState extends State<DesignScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: kPrimaryColorLighter,
-        title: Text("Design"),
-        centerTitle: true,
-      ),
-      body: widget.isFromInfo==true?Column(
-        children: [
-          Screenshot(
-            controller: screenshotController,
-            child: Column(
-              children: [
-                buildTop(),
-                Text(
-                  widget.username,
-                  style: kBoldGreyTextStyle(40),
+        appBar: AppBar(
+          backgroundColor: kPrimaryColorLighter,
+          title: Text("Design"),
+          centerTitle: true,
+        ),
+        body: widget.isFromInfo == true
+            ? SingleChildScrollView(
+              child: Column(
+                  children: [
+                    Screenshot(
+                      controller: screenshotController,
+                      child: Column(
+                        children: [
+                          buildTop(),
+                          Text(
+                            widget.username,
+                            style: kBoldGreyTextStyle(40),
+                          ),
+                          Text(
+                            widget.email,
+                            style: TextStyle(color: kTextColorGrey, fontSize: 18),
+                          ),
+                          Text(
+                            widget.phoneNumber,
+                            style: TextStyle(color: kTextColorGrey, fontSize: 18),
+                          ),
+                          SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.15),
+                        ],
+                      ),
+                    ),
+                    kTextButton(
+                        text: "Share",
+                        width: MediaQuery.of(context).size.width * 0.3,
+                        onPressed: () {
+                          captureScreen();
+                        })
+                  ],
                 ),
-                Text(
-                  widget.email,
-                  style: TextStyle(color: kTextColorGrey, fontSize: 18),
-                ),
-                Text(
-                  widget.phoneNumber,
-                  style: TextStyle(color: kTextColorGrey, fontSize: 18),
-                ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.15),
-              ],
-            ),
-          ),
-          kTextButton(
-              text: "Share",
-              width: MediaQuery.of(context).size.width * 0.3,
-              onPressed: () {
-                captureScreen();
-              })
-        ],
-      ):Text("Your design here")
-    );
+            )
+            : Center(
+                child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Your profile design will appear here"),
+                  SizedBox(height: 25,),
+                  kTextButton(text: "Create Now", width: MediaQuery.of(context).size.width*0.4, onPressed: (){
+                    Navigator.pop(context);
+                  })
+                ],
+              )));
   }
 }

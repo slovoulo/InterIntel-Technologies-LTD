@@ -24,7 +24,6 @@ class _InfoBodyState extends State<InfoBody> {
     return Scaffold(
         resizeToAvoidBottomInset:false,
         body: SingleChildScrollView(
-          child: Container(
           child: Column(
             children: [
               Stack(
@@ -35,7 +34,7 @@ class _InfoBodyState extends State<InfoBody> {
                     decoration: BoxDecoration(
                       color: kPrimaryColor,
                       border: Border.all(),
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(30),
                           bottomRight: Radius.circular(30)),
                     ),
@@ -44,7 +43,7 @@ class _InfoBodyState extends State<InfoBody> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                        children: const [
                           Text("Welcome.",style: TextStyle(color:kPrimaryLightGrey,fontSize: 50 ),),
                           Text("Create your profile",style: TextStyle(color:kPrimaryLightGrey,fontSize: 30)),
                         ],
@@ -58,7 +57,7 @@ class _InfoBodyState extends State<InfoBody> {
                 child: Form(key:_formKey,
                     child:Column(children: [
                       TextFormField(
-                        decoration:InputDecoration(
+                        decoration:const InputDecoration(
                           hintStyle: TextStyle(fontSize: 17),
                           hintText: 'Username',
                           prefixIcon: Icon(Icons.person),
@@ -74,11 +73,11 @@ class _InfoBodyState extends State<InfoBody> {
                           return null;
                         },
                       ),
-                      SizedBox(height: 20,),
+                      const SizedBox(height: 20,),
                       TextFormField(
                         controller: emailController,
                         keyboardType: TextInputType.emailAddress,
-                        decoration:InputDecoration(
+                        decoration:const InputDecoration(
                           hintStyle: TextStyle(fontSize: 17),
                           hintText: 'Email',
                           prefixIcon: Icon(Icons.email),
@@ -96,7 +95,7 @@ class _InfoBodyState extends State<InfoBody> {
                           return null;
                         },
                       ),
-                      SizedBox(height: 20,),
+                      const SizedBox(height: 20,),
                       TextFormField(
                         controller: phoneController,
                         keyboardType: TextInputType.phone,
@@ -108,7 +107,7 @@ class _InfoBodyState extends State<InfoBody> {
 
                           hintStyle: TextStyle(fontSize: 17),
                           hintText: 'Phone',
-                          prefixIcon: Icon(Icons.phone),
+                          prefixIcon: const Icon(Icons.phone),
                           //contentPadding: EdgeInsets.all(20),
                         ) ,
 
@@ -120,7 +119,7 @@ class _InfoBodyState extends State<InfoBody> {
                           return null;
                         },
                       ),
-                      SizedBox(height: 20,),
+                      const SizedBox(height: 20,),
                     ],) ),
               ),
               kTextButton(text: "Submit", width: MediaQuery.of(context).size.width*0.4, onPressed: (){
@@ -137,7 +136,6 @@ class _InfoBodyState extends State<InfoBody> {
 
             ],
           ),
-      ),
         ),
     );
   }

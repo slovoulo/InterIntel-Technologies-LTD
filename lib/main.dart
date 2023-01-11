@@ -46,8 +46,8 @@ class MyApp extends StatelessWidget {
         colorScheme:
         ColorScheme.fromSwatch().copyWith(secondary: kPrimaryColor),
       ),
-      //home: const SplashScreen(),
-       home:  TodosScreen(),
+      home: const SplashScreen(),
+      //  home:  TodosScreen(),
     );
   }
 }

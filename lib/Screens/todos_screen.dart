@@ -32,7 +32,7 @@ class _TodosScreenState extends State<TodosScreen> {
     final response = await dioFetchService().fetchTodos();
 
     try {
-      //TodosData.clear();
+      TodosData.clear();
 
       for (var result in json.decode(json.encode(response.data))) {
         todosResults =
@@ -66,39 +66,47 @@ class _TodosScreenState extends State<TodosScreen> {
   }
 
   todosContainer(String title, bool completed) {
-    return Container(padding: EdgeInsets.all(20),
-      height: MediaQuery.of(context).size.height * 0.15,
-      decoration: BoxDecoration(
-        gradient: completed
-            ? LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [kPrimaryColor, kTextColorGrey],
-              )
-            : LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [kLogoutRed, kTextColorGrey],
+    return Material(elevation: 20,borderRadius: BorderRadius.circular(20),
+      child: Container(
+        padding: EdgeInsets.all(15),
+        height: MediaQuery.of(context).size.height * 0.12,
+        decoration: BoxDecoration(
+
+
+          borderRadius: BorderRadius.circular(30),
+        ),
+        child: Row(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(height:MediaQuery.of(context).size.height * 0.15 , width: 5,
+            decoration: BoxDecoration(color: completed ?kPrimaryColor:kLogoutRed,borderRadius: BorderRadius.circular(5)),),
+            SizedBox(width: 10,),
+            Expanded(
+              child: Column(
+                children: [
+                  Align(alignment: Alignment.topLeft,
+                    child: Text(
+                      title,
+                      style: kBoldBlackTextStyle(15),
+                    ),
+                  ),
+
+                  Flexible(
+                    child: Align( 
+                        alignment: Alignment.bottomRight,
+                        child: Text(completed ? "Completed🏅" : "Pending😞")),
+                  )
+                ],
               ),
-        color: completed ? kPrimaryColor : kLogoutRed,
-        borderRadius: BorderRadius.circular(30),
-      ),
-      child: Column(
-        children: [
-          Text(title,style: kBoldBlackTextStyle(15),),
-          SizedBox(height: 25,),
-          Flexible(
-            child: Align(
-                alignment: Alignment.bottomRight,
-                child: Text(completed ? "Completed🏅" : "Pending😞")),
-          )
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }
 
   fetchingTodos() {
-    return Column(mainAxisAlignment: MainAxisAlignment.center,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SpinKitChasingDots(
             color: kPrimaryColor, duration: Duration(seconds: 1), size: 35),
@@ -107,30 +115,35 @@ class _TodosScreenState extends State<TodosScreen> {
     );
   }
 
+
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(centerTitle: true,backgroundColor: kPrimaryColorLighter,
-        title: Text("Todos"),
-
-      ),
-
-      body: Visibility(
-        visible: isBusy ? false : true,
-        replacement: fetchingTodos(),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ListView.separated(
-            separatorBuilder: (BuildContext context, int index) {
-              return SizedBox(height: 3);
-            },
-            itemCount: Todo.length,
-            itemBuilder: (context, index) {
-              return todosContainer(Todo[index].title, Todo[index].completed);
-            },
+    return  Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            backgroundColor: kPrimaryColorLighter,
+            title: Text("Todos"),
           ),
-        ),
+          body:
+      Visibility(
+    visible: isBusy ? false : true,
+    replacement: fetchingTodos(),
+    child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ListView.separated(
+        separatorBuilder: (BuildContext context, int index) {
+          return SizedBox(height:12);
+        },
+        itemCount: Todo.length,
+        itemBuilder: (context, index) {
+          return todosContainer(Todo[index].title, Todo[index].completed);
+        },
       ),
-    );
+    ),));
+
+
   }
 }
+
+
